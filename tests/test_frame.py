@@ -2197,7 +2197,9 @@ def test_generic() -> None:
         ...
 
     def func() -> MyDataFrame[int]:
-        return MyDataFrame[int]({"foo": [1, 2, 3]})
+        return MyDataFrame[int](
+            {"foo": [1, 2, 3]}
+        )  # pyright: ignore[reportGeneralTypeIssues]
 
     func()
 

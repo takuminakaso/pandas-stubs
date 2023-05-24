@@ -43,6 +43,36 @@ class DatetimeIndex(  # type: ignore[misc]
     DatetimeTimedeltaMixin,
     DatetimeIndexProperties,
 ):
+    @overload
+    def __new__(
+        cls,
+        data: DatetimeIndex,
+        freq=...,
+        tz=...,
+        normalize: bool = ...,
+        closed=...,
+        ambiguous: str = ...,
+        dayfirst: bool = ...,
+        yearfirst: bool = ...,
+        dtype=...,
+        copy: bool = ...,
+        name=...,
+    ) -> DatetimeIndex: ...
+    @overload
+    def __new__(
+        cls,
+        data: ArrayLike | AnyArrayLike | list | tuple,
+        freq=...,
+        tz=...,
+        normalize: bool = ...,
+        closed=...,
+        ambiguous: str = ...,
+        dayfirst: bool = ...,
+        yearfirst: bool = ...,
+        dtype=...,
+        copy: bool = ...,
+        name=...,
+    ) -> DatetimeIndex: ...
     def __init__(
         self,
         data: ArrayLike | AnyArrayLike | list | tuple,

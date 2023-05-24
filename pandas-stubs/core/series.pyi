@@ -1495,15 +1495,39 @@ class Series(IndexOpsMixin, NDFrame, Generic[S1]):
     def __div__(self, other: num | _ListLike | Series[S1]) -> Series[S1]: ...
     def __eq__(self, other: object) -> Series[_bool]: ...  # type: ignore[override]
     def __floordiv__(self, other: num | _ListLike | Series[S1]) -> Series[int]: ...  # type: ignore[override]
+    @overload
+    def __ge__(  # type: ignore[override]
+        self: Series[Never],
+        other: Scalar | _ListLike | Series[S1] | datetime | timedelta,
+    ) -> Series[_bool]: ...
+    @overload
     def __ge__(  # type: ignore[override]
         self, other: S1 | _ListLike | Series[S1] | datetime | timedelta
     ) -> Series[_bool]: ...
+    @overload
+    def __gt__(  # type: ignore[override]
+        self: Series[Never],
+        other: Scalar | _ListLike | Series[S1] | datetime | timedelta,
+    ) -> Series[_bool]: ...
+    @overload
     def __gt__(  # type: ignore[override]
         self, other: S1 | _ListLike | Series[S1] | datetime | timedelta
     ) -> Series[_bool]: ...
+    @overload
+    def __le__(  # type: ignore[override]
+        self: Series[Never],
+        other: Scalar | _ListLike | Series[S1] | datetime | timedelta,
+    ) -> Series[_bool]: ...
+    @overload
     def __le__(  # type: ignore[override]
         self, other: S1 | _ListLike | Series[S1] | datetime | timedelta
     ) -> Series[_bool]: ...
+    @overload
+    def __lt__(  # type: ignore[override]
+        self: Series[Never],
+        other: Scalar | _ListLike | Series[S1] | datetime | timedelta,
+    ) -> Series[_bool]: ...
+    @overload
     def __lt__(  # type: ignore[override]
         self, other: S1 | _ListLike | Series[S1] | datetime | timedelta
     ) -> Series[_bool]: ...
@@ -2008,8 +2032,8 @@ class TimestampSeries(Series[Timestamp]):
     # ignore needed because of mypy
     @property
     def dt(self) -> TimestampProperties: ...  # type: ignore[override]
-    def __add__(self, other: TimedeltaSeries | np.timedelta64) -> TimestampSeries: ...  # type: ignore[override]
-    def __radd__(self, other: TimedeltaSeries | np.timedelta64) -> TimestampSeries: ...  # type: ignore[override]
+    def __add__(self, other: TimedeltaSeries | np.timedelta64 | timedelta) -> TimestampSeries: ...  # type: ignore[override]
+    def __radd__(self, other: TimedeltaSeries | np.timedelta64 | timedelta) -> TimestampSeries: ...  # type: ignore[override]
     @overload  # type: ignore[override]
     def __sub__(
         self, other: Timestamp | datetime | TimestampSeries

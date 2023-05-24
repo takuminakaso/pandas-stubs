@@ -35,6 +35,29 @@ from pandas._typing import (
 class TimedeltaIndex(  # type: ignore[misc]
     _IndexGetitemMixin[Timedelta], DatetimeTimedeltaMixin, TimedeltaIndexProperties
 ):
+    @overload
+    def __new__(
+        cls,
+        data: TimedeltaIndex = ...,
+        unit: Literal["D", "h", "m", "s", "ms", "us", "ns"] = ...,
+        freq: str | BaseOffset = ...,
+        closed: object = ...,
+        dtype: Literal["<m8[ns]"] = ...,
+        copy: bool = ...,
+        name: str = ...,
+    ) -> TimedeltaIndex: ...
+    @overload
+    def __new__(
+        cls,
+        data: list[str]
+        | Sequence[dt.timedelta | Timedelta | np.timedelta64 | float] = ...,
+        unit: Literal["D", "h", "m", "s", "ms", "us", "ns"] = ...,
+        freq: str | BaseOffset = ...,
+        closed: object = ...,
+        dtype: Literal["<m8[ns]"] = ...,
+        copy: bool = ...,
+        name: str = ...,
+    ) -> TimedeltaIndex: ...
     def __init__(
         self,
         data: AnyArrayLike
